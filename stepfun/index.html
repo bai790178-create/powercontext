@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>端侧 AI + seekdb 混合检索</title>
+    <style>
+      body { max-width: 920px; margin: 2rem auto; padding: 0 1rem; font: 16px system-ui, sans-serif; color: #172033; }
+      textarea, input { width: 100%; box-sizing: border-box; margin: .4rem 0 1rem; padding: .7rem; }
+      button { padding: .6rem 1rem; margin-right: .5rem; cursor: pointer; }
+      #status { padding: .7rem; background: #eef5ff; border-radius: .4rem; white-space: pre-wrap; }
+      article { border-top: 1px solid #ccd4e0; padding: 1rem 0; }
+      small { color: #5b6678; }
+    </style>
+  </head>
+  <body>
+    <h1>端侧 AI + seekdb 混合检索</h1>
+    <p id="status">模型尚未加载。点击“加载本地模型”后，模型推理会留在浏览器。</p>
+    <button id="load">加载本地模型</button>
+    <label>导入文本（每行一篇文档）</label>
+    <textarea id="documents" rows="7">seekdb supports vector search and SQL filtering for retrieval augmented generation.
+端侧推理通过量化、批处理和缓存降低延迟。
+OceanBase is a distributed relational database compatible with MySQL.</textarea>
+    <button id="ingest">向量化并写入 seekdb</button>
+    <label>查询</label>
+    <input id="query" value="如何降低端侧推理延迟？" />
+    <button id="search">混合检索</button>
+    <section id="results"></section>
+    <script type="module" src="./app.js"></script>
+  </body>
+</html>
