@@ -4,10 +4,10 @@
 
 ## 启动
 
-1. 安装 `fastapi`, `uvicorn`, `pymysql`。
-2. 启动本地 seekdb，并执行 `schema.sql`。
+1. 在 `stepfun/` 目录运行 `npm install`。
+2. 启动本地 seekdb，并执行 `schema.sql`；也可以按 `server.mjs` 的配置使用 seekdb embedded mode。
 3. 设置 `SEEKDB_HOST`, `SEEKDB_PORT`, `SEEKDB_USER`, `SEEKDB_PASSWORD` 和 `SEEKDB_DATABASE`。
-4. 运行 `uvicorn server:app --reload --port 8103`，然后在 Chrome/Edge 打开 `index.html`。
+4. 运行 `npm start`，然后在 Chrome/Edge 打开 `index.html`。`server.mjs` 通过官方 `seekdb` JavaScript SDK 访问数据库；`server.py` 是等价的 MySQL 协议兼容启动方式。
 
 模型从公开的 `Xenova/all-MiniLM-L6-v2` 加载，使用 `quantized: true` 的 INT8 权重；浏览器优先选择 WebGPU，能力不可用时自动切换 WASM。推理函数只在浏览器执行，服务端不接受文本并代为调用模型。
 
