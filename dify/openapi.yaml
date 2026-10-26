@@ -1,0 +1,30 @@
+openapi: 3.0.3
+info:
+  title: Dify PowerContext Adventure Bridge
+  version: 1.0.0
+  description: Stores and recalls per-player adventure turns through PowerContext.
+servers:
+  - url: http://127.0.0.1:8787
+paths:
+  /dify/adventure:
+    post:
+      operationId: adventure
+      summary: Continue a memorable absurd adventure
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              required: [message, user_id]
+              properties:
+                message: {type: string, minLength: 1}
+                user_id: {type: string, minLength: 1}
+      responses:
+        '200':
+          description: Adventure reply
+          content:
+            text/plain:
+              schema: {type: string}
+        '502':
+          description: PowerContext unavailable

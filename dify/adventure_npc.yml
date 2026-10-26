@@ -1,0 +1,175 @@
+app:
+  description: 记忆会延续的离谱冒险 NPC：每次输入一个行动，NPC 会根据 PowerContext 中的历史记忆继续剧情，并把本轮选择保存下来。
+  icon: 🎲
+  icon_background: '#D5F5E3'
+  mode: workflow
+  name: PowerContext 离谱冒险 NPC
+  use_icon_as_answer_icon: false
+kind: app
+version: 0.1.5
+workflow:
+  conversation_variables: []
+  environment_variables:
+  - name: POWERCONTEXT_BRIDGE_URL
+    value: http://127.0.0.1:8787
+    value_type: string
+  features:
+    file_upload:
+      allowed_file_extensions: []
+      allowed_file_types: []
+      allowed_file_upload_methods: []
+      enabled: false
+      fileUploadConfig:
+        audio_file_size_limit: 5000
+        batch_count_limit: 50
+        file_size_limit: 15
+        image_file_size_limit: 10
+        video_file_size_limit: 100
+        workflow_file_upload_limit: 10
+      image:
+        enabled: false
+        number_limits: 3
+        transfer_methods: []
+    opening_statement: '欢迎来到离谱冒险局！输入一个行动，例如“我把会说话的冰箱带上船”。'
+    retriever_resource:
+      enabled: false
+    sensitive_word_avoidance:
+      enabled: false
+    speech_to_text:
+      enabled: false
+    suggested_questions:
+    - 我把会说话的冰箱带上船
+    - 我决定相信那只戴墨镜的乌鸦
+    - 我想查看之前的冒险记忆
+    suggested_questions_after_answer:
+      enabled: false
+    text_to_speech:
+      enabled: false
+      language: ''
+      voice: ''
+  graph:
+    edges:
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: start
+        targetType: http-request
+      id: start-source-adventure-target
+      source: 'start'
+      sourceHandle: source
+      target: adventure
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    - data:
+        isInIteration: false
+        isInLoop: false
+        sourceType: http-request
+        targetType: end
+      id: adventure-source-end-target
+      source: adventure
+      sourceHandle: source
+      target: end
+      targetHandle: target
+      type: custom
+      zIndex: 0
+    nodes:
+    - data:
+        desc: 输入本轮行动。PowerContext 桥接服务使用 Dify 的 user_id 作为记忆 Scope。
+        selected: false
+        title: 开始
+        type: start
+        variables:
+        - label: 你的行动
+          max_length: 2000
+          options: []
+          required: true
+          type: paragraph
+          variable: message
+        - label: 玩家 ID
+          max_length: 128
+          options: []
+          required: true
+          type: text-input
+          variable: user_id
+      height: 140
+      id: start
+      position:
+        x: 80
+        y: 260
+      positionAbsolute:
+        x: 80
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        authorization:
+          config: null
+          type: no-auth
+        body:
+          data:
+          - id: key-value-adventure
+            key: message
+            type: text
+            value: '{{#start.message#}}'
+          - id: key-value-user
+            key: user_id
+            type: text
+            value: '{{#start.user_id#}}'
+          type: json
+        desc: 调用本地桥接服务；桥接服务先检索 PowerContext，再保存本轮行动。
+        headers: Content-Type:application/json
+        method: post
+        params: ''
+        selected: false
+        timeout:
+          max_connect_timeout: 10
+          max_read_timeout: 60
+          max_write_timeout: 10
+        title: PowerContext 记忆冒险
+        type: http-request
+        url: '{{#env.POWERCONTEXT_BRIDGE_URL#}}/dify/adventure'
+        variables: []
+      height: 150
+      id: adventure
+      position:
+        x: 420
+        y: 260
+      positionAbsolute:
+        x: 420
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    - data:
+        desc: 返回桥接服务生成的冒险结果。
+        outputs:
+        - value_selector:
+          - adventure
+          - body
+          variable: text
+        selected: false
+        title: 结束
+        type: end
+      height: 110
+      id: end
+      position:
+        x: 760
+        y: 260
+      positionAbsolute:
+        x: 760
+        y: 260
+      selected: false
+      sourcePosition: right
+      targetPosition: left
+      type: custom
+      width: 244
+    viewport:
+      x: 0
+      y: 0
+      zoom: 1
