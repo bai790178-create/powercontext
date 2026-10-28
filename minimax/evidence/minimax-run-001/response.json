@@ -1,0 +1,18 @@
+{
+  "id": "073148d48b8d5efff4aad88bf547b700",
+  "model": "MiniMax-M3.1-Flash",
+  "usage": {
+    "total_tokens": 1702,
+    "total_characters": 0,
+    "prompt_tokens": 1544,
+    "completion_tokens": 158,
+    "completion_tokens_details": {
+      "reasoning_tokens": 53
+    },
+    "prompt_tokens_details": {
+      "cached_tokens": 0
+    }
+  },
+  "finish_reason": "stop",
+  "content": "{\"path\":\"sample/tasks.py\",\"content\":\"\\\"\\\"\\\"Small runnable business module for task listing.\\\"\\\"\\\"\\n\\n\\ndef list_tasks(tasks, status=None):\\n    \\\"\\\"\\\"Return tasks in their original order, optionally filtered by exact status.\\\"\\\"\\\"\\n    task_list = list(tasks)\\n    if status is None:\\n        return task_list\\n    return [task for task in task_list if task[\\\"status\\\"] == status]\\n\"}"
+}

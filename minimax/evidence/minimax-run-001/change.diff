@@ -1,0 +1,15 @@
+--- a/sample/tasks.py
++++ b/sample/tasks.py
+@@ -1,6 +1,9 @@
+-"""Small runnable business module: the initial, unmodified implementation."""
++"""Small runnable business module for task listing."""
+ 
+ 
+ def list_tasks(tasks, status=None):
+-    """Return all tasks in their original order."""
+-    return list(tasks)
++    """Return tasks in their original order, optionally filtered by exact status."""
++    task_list = list(tasks)
++    if status is None:
++        return task_list
++    return [task for task in task_list if task["status"] == status]

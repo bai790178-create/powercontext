@@ -1,0 +1,33 @@
+{
+  "scope_id": "scp_0v94py6t8ev1hzmsjcfmd60841",
+  "state": {
+    "task_id": "TASK-001",
+    "done": [
+      "MiniMax edit; 8 unchanged business tests passed"
+    ],
+    "todo": [
+      "review final delivery"
+    ],
+    "tests": [
+      "after: 8 passed; see evidence/after"
+    ],
+    "saved_at": "2026-10-28T15:34:16.279550+00:00"
+  },
+  "result": {
+    "changed": true,
+    "records": [
+      {
+        "artifact": {
+          "family": "atomic-memory",
+          "artifact_id": "art_eac530c36fc84796aec97bb77d42dc31",
+          "revision": 1
+        },
+        "kind": "progress",
+        "text": "sddtaskstate\n{\"task_id\": \"TASK-001\", \"done\": [\"MiniMax edit; 8 unchanged business tests passed\"], \"todo\": [\"review final delivery\"], \"tests\": [\"after: 8 passed; see evidence/after\"], \"saved_at\": \"2026-10-28T15:34:16.279550+00:00\"}",
+        "state": "active",
+        "state_version": 0,
+        "merged_into_id": null
+      }
+    ]
+  }
+}

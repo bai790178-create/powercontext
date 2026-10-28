@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-28T15:35:23.455417+00:00",
+  "command": [
+    "F:\\OceanBase\\powercontext-minimax\\minimax\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "pytest",
+    "-q",
+    "tests",
+    "--junitxml=evidence/context-tests.xml"
+  ],
+  "exit_code": 0,
+  "python": "3.12.14 (main, Aug 25 2026, 14:01:42) [MSC v.1944 64 bit (AMD64)]",
+  "versions": {
+    "powercontext": "1.4.1",
+    "PyMySQL": "1.2.0",
+    "pytest": "9.0.2",
+    "httpx": "0.28.1"
+  }
+}
