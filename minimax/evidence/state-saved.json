@@ -1,0 +1,33 @@
+{
+  "scope_id": "scp_0v94py6t8ev1hzmsjcfmd60841",
+  "state": {
+    "task_id": "TASK-001",
+    "done": [
+      "spec reviewed; real seekdb retrieval and 9 integration checks passed; baseline recorded"
+    ],
+    "todo": [
+      "configure MiniMax API; run actual edit and the unchanged business tests"
+    ],
+    "tests": [
+      "baseline: 4 target failures and 4 regression passes; integration: 9 passed"
+    ],
+    "saved_at": "2026-10-28T14:43:21.276237+00:00"
+  },
+  "result": {
+    "changed": true,
+    "records": [
+      {
+        "artifact": {
+          "family": "atomic-memory",
+          "artifact_id": "art_4ba300b084094695a779e90f3186d704",
+          "revision": 1
+        },
+        "kind": "progress",
+        "text": "sddtaskstate\n{\"task_id\": \"TASK-001\", \"done\": [\"spec reviewed; real seekdb retrieval and 9 integration checks passed; baseline recorded\"], \"todo\": [\"configure MiniMax API; run actual edit and the unchanged business tests\"], \"tests\": [\"baseline: 4 target failures and 4 regression passes; integration: 9 passed\"], \"saved_at\": \"2026-10-28T14:43:21.276237+00:00\"}",
+        "state": "active",
+        "state_version": 0,
+        "merged_into_id": null
+      }
+    ]
+  }
+}

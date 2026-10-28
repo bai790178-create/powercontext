@@ -1,0 +1,75 @@
+{
+  "task": {
+    "task_id": "TASK-001",
+    "description": "Add exact status filtering to list_tasks while preserving unfiltered listing, order, and input data."
+  },
+  "sources": [
+    {
+      "path": "sample/specs/tasks.md",
+      "kind": "spec",
+      "symbol": "TASK-001",
+      "content": "# Task list contract — revision 1\n\n## TASK-001: exact status filter\n\nThe task `TASK-001` adds filtering to `sample/tasks.py:list_tasks`.\n\n- If status is None or omitted, return all records in their original order.\n- Otherwise, return only records whose `status` equals the supplied string.\n- An unknown status, including an empty string, returns an empty list.\n- Do not change the input, the records' fields, or their order.\n- Continue accepting an iterable and return a new list.\n- Existing records have a `status` field. No new validation or normalization is required.\n\nVerification: `sample/tests/test_tasks.py`, both `test_target_*` and `test_regression_*`.\n\n",
+      "sha256": "ffbedf5a31c65cec41682f623dd94c832115001594c6f51bc0279ab0a35b7bac",
+      "score": 3,
+      "line_start": 1,
+      "line_end": 15
+    },
+    {
+      "path": "sample/tasks.py",
+      "kind": "code",
+      "symbol": "list_tasks",
+      "content": "\"\"\"Small runnable business module: the initial, unmodified implementation.\"\"\"\n\n\ndef list_tasks(tasks, status=None):\n    \"\"\"Return all tasks in their original order.\"\"\"\n    return list(tasks)\n",
+      "sha256": "282245d1081c7560027d612ec7c28e5cb04454f8003e322120e4a64cac03f0d5",
+      "score": 3,
+      "line_start": 1,
+      "line_end": 6
+    },
+    {
+      "path": "sample/tests/test_tasks.py",
+      "kind": "test",
+      "symbol": "test_target_*, test_regression_*",
+      "content": "\"\"\"The same target and regression tests are used before and after modification.\"\"\"\n\nimport copy\n\nimport pytest\n\nfrom sample.tasks import list_tasks\n\n\n@pytest.fixture\ndef tasks():\n    return [\n        {\"id\": 1, \"title\": \"write spec\", \"status\": \"done\"},\n        {\"id\": 2, \"title\": \"implement\", \"status\": \"pending\"},\n        {\"id\": 3, \"title\": \"review\", \"status\": \"done\"},\n    ]\n\n\n@pytest.mark.parametrize(\"status,ids\", [(\"pending\", [2]), (\"done\", [1, 3])])\ndef test_target_filter_by_status(tasks, status, ids):\n    assert [task[\"id\"] for task in list_tasks(tasks, status)] == ids\n\n\ndef test_target_unknown_status_is_empty(tasks):\n    assert list_tasks(tasks, \"archived\") == []\n\n\ndef test_target_empty_string_is_an_exact_filter(tasks):\n    assert list_tasks(tasks, \"\") == []\n\n\ndef test_regression_no_filter_preserves_all_tasks_and_order(tasks):\n    assert list_tasks(tasks) == tasks\n    assert list_tasks(tasks, None) == tasks\n\n\ndef test_regression_empty_input():\n    assert list_tasks([]) == []\n    assert list_tasks([], \"pending\") == []\n\n\ndef test_regression_input_is_not_modified(tasks):\n    original = copy.deepcopy(tasks)\n    result = list_tasks(tasks, \"done\")\n    assert tasks == original\n    assert result is not tasks\n\n\ndef test_regression_iterable_input(tasks):\n    assert list_tasks(iter(tasks)) == tasks\n",
+      "sha256": "a45a04a309c671e87c3e4f11f5e46f7985c85a6488ae068d2153547fa82c7e5d",
+      "score": 3,
+      "line_start": 1,
+      "line_end": 50
+    }
+  ],
+  "database_query": {
+    "sql": "SELECT d.path,d.kind,d.symbol,d.content,d.sha256,COUNT(*) AS score\n            FROM sdd_documents d JOIN sdd_terms t ON t.path=d.path\n            WHERE t.term IN (%s,%s,%s,%s)\n            GROUP BY d.path,d.kind,d.symbol,d.content,d.sha256\n            ORDER BY score DESC,d.path",
+    "parameters": [
+      "task",
+      "status",
+      "list_tasks",
+      "filter"
+    ],
+    "row_count": 3,
+    "server": {
+      "version": "5.7.25-OceanBase seekdb-v1.4.0.0"
+    }
+  },
+  "task_state": {
+    "scope_id": "scp_0v94py6t8ev1hzmsjcfmd60841",
+    "latest": {
+      "state": {
+        "task_id": "TASK-001",
+        "done": [
+          "spec reviewed; real seekdb retrieval and 9 integration checks passed; baseline recorded"
+        ],
+        "todo": [
+          "configure MiniMax API; run actual edit and the unchanged business tests"
+        ],
+        "tests": [
+          "baseline: 4 target failures and 4 regression passes; integration: 9 passed"
+        ],
+        "saved_at": "2026-10-28T14:43:21.276237+00:00"
+      },
+      "citation": {
+        "family": "atomic-memory",
+        "artifact_id": "art_4ba300b084094695a779e90f3186d704",
+        "revision": 1
+      }
+    }
+  },
+  "generated_at": "2026-10-28T15:33:41.968200+00:00"
+}

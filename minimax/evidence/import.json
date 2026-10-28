@@ -1,0 +1,7 @@
+{
+  "documents": 4,
+  "tasks": 2,
+  "server": {
+    "version": "5.7.25-OceanBase seekdb-v1.4.0.0"
+  }
+}

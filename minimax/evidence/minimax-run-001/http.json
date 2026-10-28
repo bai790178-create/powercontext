@@ -1,0 +1,6 @@
+{
+  "endpoint": "https://api.minimax.cn/v1/chat/completions",
+  "status_code": 200,
+  "request_id": null,
+  "at": "2026-10-28T15:33:44.308101+00:00"
+}

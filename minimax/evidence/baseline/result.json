@@ -1,0 +1,26 @@
+{
+  "phase": "baseline",
+  "at": "2026-10-28T14:34:02.997586+00:00",
+  "command": [
+    "F:\\OceanBase\\powercontext-minimax\\minimax\\.venv\\Scripts\\python.exe",
+    "-m",
+    "pytest",
+    "-q",
+    "-rA",
+    "--junitxml=F:\\OceanBase\\powercontext-minimax\\minimax\\evidence\\baseline\\junit.xml",
+    "sample/tests/test_tasks.py"
+  ],
+  "exit_code": 1,
+  "git_head": "d647275c308e09b7b623f322a26f5c4e85734fb0",
+  "source_sha256": "282245d1081c7560027d612ec7c28e5cb04454f8003e322120e4a64cac03f0d5",
+  "test_sha256": "a45a04a309c671e87c3e4f11f5e46f7985c85a6488ae068d2153547fa82c7e5d",
+  "tests": 8,
+  "failures": [
+    "test_target_filter_by_status[pending-ids0]",
+    "test_target_filter_by_status[done-ids1]",
+    "test_target_unknown_status_is_empty",
+    "test_target_empty_string_is_an_exact_filter"
+  ],
+  "errors": [],
+  "skipped": []
+}

@@ -1,0 +1,23 @@
+{
+  "phase": "after",
+  "at": "2026-10-28T15:34:05.732715+00:00",
+  "command": [
+    "F:\\OceanBase\\powercontext-minimax\\minimax\\.venv\\Scripts\\python.exe",
+    "-X",
+    "utf8",
+    "-m",
+    "pytest",
+    "-q",
+    "-rA",
+    "--junitxml=F:\\OceanBase\\powercontext-minimax\\minimax\\evidence\\after\\junit.xml",
+    "sample/tests/test_tasks.py"
+  ],
+  "exit_code": 0,
+  "git_head": "d647275c308e09b7b623f322a26f5c4e85734fb0",
+  "source_sha256": "863fbcd169ef1a7fb9c30748f1d74c59792d43a035ebbb8026fd5a7e28758940",
+  "test_sha256": "a45a04a309c671e87c3e4f11f5e46f7985c85a6488ae068d2153547fa82c7e5d",
+  "tests": 8,
+  "failures": [],
+  "errors": [],
+  "skipped": []
+}

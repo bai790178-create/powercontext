@@ -1,0 +1,20 @@
+{
+  "tasks": [
+    {
+      "id": "TASK-001",
+      "description": "Add exact status filtering to list_tasks while preserving unfiltered listing, order, and input data.",
+      "terms": ["task", "status", "list_tasks", "filter"]
+    },
+    {
+      "id": "EXPORT-001",
+      "description": "Review the independent CSV export contract.",
+      "terms": ["csv", "export"]
+    }
+  ],
+  "documents": [
+    {"path": "sample/specs/tasks.md", "kind": "spec", "symbol": "TASK-001", "terms": ["task", "status", "filter"]},
+    {"path": "sample/tasks.py", "kind": "code", "symbol": "list_tasks", "terms": ["task", "status", "list_tasks"]},
+    {"path": "sample/tests/test_tasks.py", "kind": "test", "symbol": "test_target_*, test_regression_*", "terms": ["task", "status", "filter"]},
+    {"path": "sample/specs/unrelated.md", "kind": "spec", "symbol": "EXPORT-001", "terms": ["csv", "export"]}
+  ]
+}
